@@ -1,0 +1,1 @@
+# Multi-Vendor Fetch Service\n\n## Quick Start\n\n```bash\ndocker-compose up --build\n```\n\n## Architecture\n\nAPI -> Redis Stream -> Worker -> Vendor (sync/async) -> MongoDB\n\n## Endpoints\n\n- `POST /jobs`\n- `GET /jobs/:id`\n- `POST /vendor-webhook/async`\n\n## Tech Stack\n- Node.js\n- MongoDB\n- Redis Streams\n- Docker Compose

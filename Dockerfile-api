@@ -1,0 +1,6 @@
+FROM node:18
+WORKDIR /app
+COPY api ./api
+WORKDIR /app/api
+RUN npm init -y && npm install express body-parser uuid mongodb redis axios
+CMD ["node", "server.js"]

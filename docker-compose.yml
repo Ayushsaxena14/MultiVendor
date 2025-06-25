@@ -1,0 +1,43 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - redis
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile-worker
+    depends_on:
+      - mongo
+      - redis
+
+  vendor-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile-vendor
+    environment:
+      - VENDOR=sync
+
+  vendor-async:
+    build:
+      context: .
+      dockerfile: Dockerfile-vendor
+    environment:
+      - VENDOR=async
+
+  mongo:
+    image: mongo:4.2
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"

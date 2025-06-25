@@ -1,0 +1,6 @@
+FROM node:18
+WORKDIR /worker
+COPY worker ./worker
+WORKDIR /worker/worker
+RUN npm init -y && npm install redis mongodb axios
+CMD ["node", "worker.js"]

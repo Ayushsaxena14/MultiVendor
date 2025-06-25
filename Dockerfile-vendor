@@ -1,0 +1,6 @@
+FROM node:18
+WORKDIR /vendor
+COPY vendors ./vendors
+WORKDIR /vendor/vendors
+RUN npm init -y && npm install express axios
+CMD ["sh", "-c", "if [ \"$VENDOR\" = \"sync\" ]; then node syncVendor.js; else node asyncVendor.js; fi"]
